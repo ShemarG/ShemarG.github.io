@@ -282,5 +282,47 @@ const masterData = [
 ]
 
 const render = () => {
-  document.getElementById('')
+  let answer = Math.floor(Math.random() * masterData.length)
+  let coral = masterData[answer];
+  console.log(coral)
+  let imgDiv = document.getElementById('imgDiv')
+  imgDiv.innerHTML = `<img src='../images/${coral.code}/${Math.ceil(Math.random() * 4)}.jpg'/>`
+
+  const getAnswers = () => {
+    var ansArr = [coral]
+    let dataCopy = masterData.slice()
+    dataCopy.splice(answer,1)
+    for (let i = 0; i < 4; i++) {
+      let choice = Math.floor(Math.random() * dataCopy.length)
+      ansArr.push(dataCopy[choice])
+      console.log(dataCopy[choice].name)
+      dataCopy.splice(choice,1)
+    }
+    console.log(ansArr)
+    function shuffleArray(array) {
+	    for (let i = array.length - 1; i > 0; i--) {
+	        let j = Math.floor(Math.random() * (i + 1));
+	        let temp = array[i];
+	        array[i] = array[j];
+	        array[j] = temp;
+	    }
+    	return array;
+	   }
+     ansArr = shuffleArray(ansArr)
+     return ansArr
+  }
+
+  const renderAns = (array) => {
+    let answerButtons = document.getElementById('answerButtons')
+    for (let i = 0; i < array.length; i++) {
+     let btn = document.createElement('button')
+     let br = document.createElement('br')
+     btn.innerHTML = array[i].name
+     answerButtons.appendChild(btn)
+     answerButtons.appendChild(br)
+    }
+  }
+  renderAns(getAnswers(answer))
 }
+
+render()

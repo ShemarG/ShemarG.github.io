@@ -5,7 +5,7 @@ const masterData = [
     group: "Fire Coral",
     notes: [
       "Not a hard coral – different class (Hydrozoa)",
-      "yellow to tan, branch tips white"
+      "Yellow to tan, branch tips white"
     ]
   },
   {
@@ -13,9 +13,9 @@ const masterData = [
     code: "MCOM",
     group: "Fire Coral",
     notes: [
-      "upright blades that rise above an encrusting base may have subdivided tips",
-      "blades may interconnect to form complex “honeycombs”",
-      "yellow, tan or yellow brown",
+      "Upright blades that rise above an encrusting base may have subdivided tips",
+      "Blades may interconnect to form complex “honeycombs”",
+      "Yellow, tan or yellow brown",
       "Millepora differs from the scleractinian stony corals: minute defensive polyps protrude from tiny pores in the colony surfaces"
     ]
   },
@@ -167,7 +167,7 @@ const masterData = [
     notes: [
       "Yellowish colour",
       "Thick ridges with large, thick septa",
-      " Deep narrow valleys in which narrow septa connect polyp mouths",
+      "Deep narrow valleys in which narrow septa connect polyp mouths",
       "Thick plates or crusts, mounds, or short columns",
       "Very aggressive towards most other corals",
     ]
@@ -208,8 +208,8 @@ const masterData = [
     code: "APAL",
     group: "Branching",
     notes: [
-      "large branches, cylindrical where exposed to waves",
-      "branches flatten in calm water"
+      "Large branches, cylindrical where exposed to waves",
+      "Branches flatten in calm water"
     ]
   },
   {
@@ -280,49 +280,103 @@ const masterData = [
     ]
   }
 ]
+let correctAnswer = ""
+const boostRand = ["GOOD JOB!", "CORRECT!", "KEEP IT UP!", "AWESOME!", "THAT'S RIGHT!", "SWEET!", "You're doing GREAT!", "NICE!"]
+let score = 0
+let scoreSpan = document.getElementById('score')
+
+const randFunc = (arr) => {
+  return Math.floor(Math.random() * arr.length)
+}
+
+for (let i = 0; i < 5; i++) {
+ let btn = document.getElementById(`btn_${i+1}`)
+ btn.addEventListener('click', function(e){handleAns(e)})
+}
+
+let continueBtn = document.getElementById('continue')
+continueBtn.addEventListener('click', () => {
+  scoreSpan.setAttribute("style", "color: default")
+  scoreSpan.textContent = ''
+  response.innerHTML = ''
+  btnList = document.querySelectorAll('.ans')
+  btnList.forEach((button) => {
+    button.classList.remove('correct', 'incorrect')
+    button.disabled = false
+  });
+
+  render()
+})
 
 const render = () => {
-  let answer = Math.floor(Math.random() * masterData.length)
+  scoreSpan.textContent = `Score: ${score}`
+  let answer = randFunc(masterData)
   let coral = masterData[answer];
-  console.log(coral)
   let imgDiv = document.getElementById('imgDiv')
-  imgDiv.innerHTML = `<img src='../images/${coral.code}/${Math.ceil(Math.random() * 4)}.jpg'/>`
+  imgDiv.innerHTML = `<img class='image' src='../images/${coral.code}/${Math.ceil(Math.random() * 4)}.jpg'/>`
 
-  const getAnswers = () => {
-    var ansArr = [coral]
-    let dataCopy = masterData.slice()
-    dataCopy.splice(answer,1)
-    for (let i = 0; i < 4; i++) {
-      let choice = Math.floor(Math.random() * dataCopy.length)
-      ansArr.push(dataCopy[choice])
-      console.log(dataCopy[choice].name)
-      dataCopy.splice(choice,1)
-    }
-    console.log(ansArr)
-    function shuffleArray(array) {
-	    for (let i = array.length - 1; i > 0; i--) {
-	        let j = Math.floor(Math.random() * (i + 1));
-	        let temp = array[i];
-	        array[i] = array[j];
-	        array[j] = temp;
-	    }
-    	return array;
+  let ansArr = [coral]
+  let dataCopy = masterData.slice()
+  dataCopy.splice(answer,1)
+  for (let i = 0; i < 4; i++) {
+    let choice = randFunc(dataCopy)
+    ansArr.push(dataCopy[choice])
+    dataCopy.splice(choice,1)
+  }
+  function shuffleArray(array) {
+	   for (let i = array.length - 1; i > 0; i--) {
+	      let j = Math.floor(Math.random() * (i + 1));
+	      let temp = array[i];
+	      array[i] = array[j];
+	      array[j] = temp;
 	   }
-     ansArr = shuffleArray(ansArr)
-     return ansArr
+     return array;
+	}
+  ansArr = shuffleArray(ansArr)
+
+  for (let i = 0; i < ansArr.length; i++) {
+    let btn = document.getElementById(`btn_${i+1}`)
+    btn.innerHTML = ansArr[i].name
   }
 
-  const renderAns = (array) => {
-    let answerButtons = document.getElementById('answerButtons')
-    for (let i = 0; i < array.length; i++) {
-     let btn = document.createElement('button')
-     let br = document.createElement('br')
-     btn.innerHTML = array[i].name
-     answerButtons.appendChild(btn)
-     answerButtons.appendChild(br)
-    }
-  }
-  renderAns(getAnswers(answer))
+  correctAnswer = coral
 }
 
 render()
+
+const handleAns = (evt) => {
+  let resp = document.getElementById('response')
+  let btnList = document.querySelectorAll('.ans')
+  btnList = ([].slice.call(btnList))
+  let correctButton = ""
+  btnList.forEach((element, index) => {
+    element.disabled = true
+    if (element.innerHTML == correctAnswer.name){
+      correctButton = element
+      btnList.splice(index,1)
+    }
+  })
+
+  if (evt.target.innerHTML == correctAnswer.name){
+    console.log('booty')
+    scoreSpan.textContent = `Score: ${score}+1`
+    score++
+    scoreSpan.setAttribute("style", "color: green")
+  } else {
+    scoreSpan.textContent = `Score: ${score}`
+    scoreSpan.setAttribute("style", "color: red")
+  }
+
+  let list = document.createElement('ul')
+  for (let i = 0; i < correctAnswer.notes.length; i++) {
+    let item = document.createElement('li')
+    item.innerHTML = correctAnswer.notes[i]
+    list.appendChild(item)
+  }
+  resp.innerHTML = list.innerHTML
+  btnList.disabled = true
+  btnList.forEach((element, index) => {
+    element.classList.add('incorrect')
+  })
+  correctButton.classList.add('correct')
+}

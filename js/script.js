@@ -5,7 +5,7 @@ const masterData = [
     group: "Fire Coral",
     notes: [
       "Not a hard coral – different class (Hydrozoa)",
-      "yellow to tan, branch tips white"
+      "Yellow to tan, branch tips white"
     ]
   },
   {
@@ -13,9 +13,9 @@ const masterData = [
     code: "MCOM",
     group: "Fire Coral",
     notes: [
-      "upright blades that rise above an encrusting base may have subdivided tips",
-      "blades may interconnect to form complex “honeycombs”",
-      "yellow, tan or yellow brown",
+      "Upright blades that rise above an encrusting base may have subdivided tips",
+      "Blades may interconnect to form complex “honeycombs”",
+      "Yellow, tan or yellow brown",
       "Millepora differs from the scleractinian stony corals: minute defensive polyps protrude from tiny pores in the colony surfaces"
     ]
   },
@@ -167,7 +167,7 @@ const masterData = [
     notes: [
       "Yellowish colour",
       "Thick ridges with large, thick septa",
-      " Deep narrow valleys in which narrow septa connect polyp mouths",
+      "Deep narrow valleys in which narrow septa connect polyp mouths",
       "Thick plates or crusts, mounds, or short columns",
       "Very aggressive towards most other corals",
     ]
@@ -208,8 +208,8 @@ const masterData = [
     code: "APAL",
     group: "Branching",
     notes: [
-      "large branches, cylindrical where exposed to waves",
-      "branches flatten in calm water"
+      "Large branches, cylindrical where exposed to waves",
+      "Branches flatten in calm water"
     ]
   },
   {

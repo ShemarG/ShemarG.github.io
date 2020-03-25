@@ -1,3 +1,56 @@
-.test {
-  background-color: red;
+.game {
+  text-align: center;
+}
+
+.ans {
+  height: 2.5vw;
+  width: 18vw;
+  color: black;
+}
+
+.userPanel {
+  height: 22vh;
+  width: 37vw;
+  display: inline-flex;
+}
+
+.image {
+  width: 37vw;
+  height: 40%;
+}
+
+.correct {
+  background-color: #82E0AA;
+  font-weight: bold;
+}
+
+.incorrect {
+  background-color: #F1948A;
+}
+
+#menu {
+  height: 1vh;
+}
+
+#score {
+  height: 1vh;
+}
+
+#scoreboard {
+  text-align: left;
+  width: 100%;
+}
+
+#answerButtons {
+  text-align: left;
+  margin-right: 5%;
+}
+
+#response {
+  height: 8vw;
+  overflow-y: auto;
+  border: 1px solid black;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+  padding: 5%;
 }

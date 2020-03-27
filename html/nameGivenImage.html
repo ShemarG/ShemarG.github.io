@@ -3,24 +3,28 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
     <title>BIOL3409 Coral Reef Quiz</title>
   </head>
   <body>
     <div class="game">
       <div class="titleDiv">
-        <h1>Name By Image</h1>
+        <span>NAME THAT CORAL</span>
       </div>
       <div id="imgDiv"></div>
       <div class="userPanel">
-        <div id="answerButtons">
+        <div id="sub-panel-1">
           <button id="btn_1" class="ans" name="button"></button><br>
           <button id="btn_2" class="ans" name="button"></button><br>
           <button id="btn_3" class="ans" name="button"></button><br>
           <button id="btn_4" class="ans" name="button"></button><br>
           <button id="btn_5" class="ans" name="button"></button><br>
         </div>
-        <div id="scoreboard">
-          <span id="score"></span>
+        <div id="sub-panel-2">
+          <div class="scoreboard">
+            <span id="score"></span>
+            <span id="timer"></span>
+          </div>
           <div id="response"></div>
           <div id="menu">
             <button id='continue'>Continue</button>

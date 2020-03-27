@@ -64,7 +64,7 @@ const masterData = [
     notes: [
       "Large plocoid corallites.",
       "Round, exsert.",
-      "Compare with smaller plocoid corallites of Orbicella annularis on the right",
+      "Compare with smaller plocoid corallites of Orbicella Annularis",
       "Brown, yellow-brown, green or grey"
     ]
   },
@@ -281,13 +281,39 @@ const masterData = [
   }
 ]
 let correctAnswer = ""
-const boostRand = ["GOOD JOB!", "CORRECT!", "KEEP IT UP!", "AWESOME!", "THAT'S RIGHT!", "SWEET!", "You're doing GREAT!", "NICE!"]
 let score = 0
+let questionCount = 0
 let scoreSpan = document.getElementById('score')
 
 const randFunc = (arr) => {
   return Math.floor(Math.random() * arr.length)
 }
+
+function startTimer(duration, display) {
+    let timer = duration, minutes, seconds;
+    let countdown = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = `Time remaining: ${minutes}:${seconds}`;
+
+        if (--timer < 0) {
+            timer = duration;
+            clearInterval(countdown)
+            alert(`You got ${score} correct out of ${questionCount} attempted for an accuracy of ${((score/questionCount)*100).toFixed(2)}%!\nAverage Speed: ~${(300/questionCount).toFixed(2)} secs per question.`)
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    let fiveMinutes = 60 * 5,
+        display = document.getElementById('timer');
+
+      startTimer(fiveMinutes, display);
+};
 
 for (let i = 0; i < 5; i++) {
  let btn = document.getElementById(`btn_${i+1}`)
@@ -340,6 +366,7 @@ const render = () => {
   }
 
   correctAnswer = coral
+  questionCount++;
 }
 
 render()
@@ -358,7 +385,6 @@ const handleAns = (evt) => {
   })
 
   if (evt.target.innerHTML == correctAnswer.name){
-    console.log('booty')
     scoreSpan.textContent = `Score: ${score}+1`
     score++
     scoreSpan.setAttribute("style", "color: green")

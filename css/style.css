@@ -3,54 +3,76 @@
 }
 
 .ans {
-  height: 2.5vw;
-  width: 18vw;
+  margin-top: 2%;
+  height: 5vh;
+  width: 17vw;
   color: black;
+  border-radius: 3px;
+  background-image: linear-gradient(to top, rgb(207, 207, 207) 16%, rgb(252, 252, 252) 79%);
+  border: 1px solid black;
 }
 
 .userPanel {
-  height: 22vh;
-  width: 37vw;
+  height: 30vh;
+  width: 40vw;
   display: inline-flex;
 }
 
+.titleDiv {
+  height: 7vh;
+  font-size: 5vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Kalam, cursive;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
+}
+
 .image {
-  width: 37vw;
-  height: 40%;
+  height: 58vh;
+  border: 5px ridge black;
 }
 
 .correct {
-  background-color: #82E0AA;
+  background: rgb(42,217,53);
+  background: linear-gradient(0deg, rgba(42,217,53,1) 0%, rgba(255,255,255,1) 100%);
   font-weight: bold;
 }
 
 .incorrect {
-  background-color: #F1948A;
+  background: rgb(237,116,116);
+  background: linear-gradient(0deg, rgba(237,116,116,1) 0%, rgba(255,255,255,1) 100%);
 }
 
 #menu {
-  height: 1vh;
+  height: 3.5vh;
 }
 
-#score {
-  height: 1vh;
+#continue {
+  height: 100%;
 }
 
-#scoreboard {
-  text-align: left;
-  width: 100%;
-}
-
-#answerButtons {
+#sub-panel-1 {
   text-align: left;
   margin-right: 5%;
 }
 
+#sub-panel-2 {
+  text-align: left;
+  width: 100%;
+}
+
 #response {
-  height: 8vw;
+  height: 18vh;
   overflow-y: auto;
   border: 1px solid black;
-  margin-top: 1vw;
-  margin-bottom: 1vw;
-  padding: 5%;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  padding: 1vh;
 }

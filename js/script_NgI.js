@@ -303,7 +303,14 @@ function startTimer(duration, display) {
         if (--timer < 0) {
             timer = duration;
             clearInterval(countdown)
-            alert(`You got ${score} correct out of ${questionCount} attempted for an accuracy of ${((score/questionCount)*100).toFixed(2)}%!\nAverage Speed: ~${(300/questionCount).toFixed(2)} secs per question.`)
+            alert(`Time's Up!`)
+            continueBtn.disabled = true
+            response.innerHTML = `
+            <center> Session Summary: <br>
+            Questions Attempted: ${questionCount} <br>
+            Correct Answers: ${score} <br>
+            Accuracy: ${((score/questionCount)*100).toFixed(2)}% <br>
+            Speed: ${(300/score).toFixed(2)} seconds per question </center>`
         }
     }, 1000);
 }
@@ -334,7 +341,14 @@ continueBtn.addEventListener('click', () => {
   render()
 })
 
+let resetBtn = document.getElementById('reset')
+resetBtn.addEventListener('click', () => {
+  let crfm = confirm('Are you sure you want to restart?')
+  crfm == true ? location.reload():''
+})
+
 const render = () => {
+  continueBtn.disabled = true
   scoreSpan.textContent = `Score: ${score}`
   let answer = randFunc(masterData)
   let coral = masterData[answer];
@@ -405,4 +419,5 @@ const handleAns = (evt) => {
     element.classList.add('incorrect')
   })
   correctButton.classList.add('correct')
+  continueBtn.disabled = false
 }

@@ -6,7 +6,12 @@ body {
   background-color: black;
   height: 100vh;
   background-image: url('https://i.pinimg.com/originals/c9/a7/44/c9a7446f8805dc824a7e47859e3c58f5.jpg');
+}
 
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -19,29 +24,14 @@ background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBo
   border-right: 8px grey groove;
 }
 
-.ans {
-  margin-top: 2%;
-  height: 5vh;
-  width: 17vw;
-  color: black;
-  border-radius: 8px;
-  background-image: linear-gradient(to top, rgb(207, 207, 207) 16%, rgb(252, 252, 252) 79%);
-  border: 1.5px solid black;
-  font-size: 1em;
-  font-family: 'Sen', sans-serif;
-}
-
-.ans:hover {
-  background-image: linear-gradient(to top, rgb(255, 255, 255, 1) 0%, rgb(255, 235,0, 1) 100%);
-}
-
 .userPanel {
   height: 30vh;
   width: 40vw;
-  display: inline-flex;
+  display: inline-block;
 }
 
 .titleDiv {
+  position: relative;
   height: 13vh;
   font-size: 11vh;
   margin-top: 0;
@@ -68,11 +58,6 @@ background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBo
   font-family: 'Sen', sans-serif;
 }
 
-.image {
-  height: 53vh;
-  border: 3px solid black;
-}
-
 .correct {
   background: rgb(42,217,53);
   background: linear-gradient(0deg, rgba(42,217,53,1) 0%, rgba(255,255,255,1) 100%);
@@ -84,35 +69,59 @@ background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBo
   background: linear-gradient(0deg, rgba(237,116,116,1) 0%, rgba(255,255,255,1) 100%);
 }
 
+.nav_btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 33%;
+  height: 100%;
+  font-family: 'Sen', sans-serif;
+  border-radius: 3px;
+  border: 1.5px solid black;
+}
+
+.nav_btn:hover:not(:disabled) {
+  background-image: linear-gradient(to top, rgb(255, 255, 255, 1) 0%, rgb(255, 235,0, 1) 100%);
+}
+
+.nav_icon {
+  height: 100%;
+  width: inherit;
+}
+
 #menu {
   display: flex;
   justify-content: space-around;
   height: 3.5vh;
 }
 
-#continue, #reset {
-  height: 100%;
-  font-family: 'Sen', sans-serif;
-  border-radius: 3px;
-  border: 1.5px solid black;
-
+#nameDisplay {
+  margin-top: 15vh;
+  font-size: 12vh;
+  font-family: 'Special Elite', cursive;
 }
 
-#sub-panel-1 {
-  text-align: left;
-  margin-right: 5%;
+#ansInput {
+  font-size: 4vh;
+  height: 7vh;
+  width: 40vw;
+  text-align: center;
+  border-radius: 15px;
+  position: relative;
+  z-index: 1;
 }
 
-#sub-panel-2 {
-  text-align: left;
-  width: 100%;
+#ansSubmit {
+  height: 7.5vh;
+  border-radius: 15px;
+  position: relative;
+  z-index: 0;
 }
 
 #response {
   height: 18vh;
   overflow-y: auto;
   border: 1.5px solid black;
-  /* margin-top: 1vh; */
   margin-bottom: 1vh;
   padding: 1vh;
   background-color: white;

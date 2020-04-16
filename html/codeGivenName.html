@@ -2,31 +2,31 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../css/game-style-ngi.css">
+    <link rel="stylesheet" href="../css/game-style-cgn.css">
     <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Sen&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <title>BIOL3409 Coral Reef Quiz</title>
   </head>
   <body>
     <div class="game">
       <div class="titleDiv">
-        <span>NAME THAT CORAL</span>
+        <span>CORAL CODES</span>
       </div>
-      <div id="imgDiv"></div>
+
+      <div id="nameDisplay"></div>
+      <div id="ans">
+        <form>
+          <input id="ansInput" type="text">
+          <input id="ansSubmit" type="submit">
+        </form>
+      </div>
       <div class="userPanel">
-        <div id="sub-panel-1">
-          <button id="btn_1" class="ans" name="button"></button><br>
-          <button id="btn_2" class="ans" name="button"></button><br>
-          <button id="btn_3" class="ans" name="button"></button><br>
-          <button id="btn_4" class="ans" name="button"></button><br>
-          <button id="btn_5" class="ans" name="button"></button><br>
+        <div class="scoreboard">
+          <span id="score"></span>
+          <span id="timer"></span>
         </div>
-        <div id="sub-panel-2">
-          <div class="scoreboard">
-            <span id="score"></span>
-            <span id="timer"></span>
-          </div>
-          <div id="response"></div>
+        <div id="response"></div>
           <div id="menu">
             <button class='nav_btn' id='continue'>Continue<img class='nav_icon' src="../assets/right-arrow.svg"></button>
             <button class='nav_btn' id='reset'>Restart<img class='nav_icon' src="../assets/refresh.svg"></button>
@@ -34,8 +34,6 @@
           </div>
         </div>
       </div>
-    </div>
-
   </body>
 </html>
-<script src="../js/script_NgI.js" type="text/javascript"></script>
+<script src="../js/script_CgN.js" type="text/javascript"></script>

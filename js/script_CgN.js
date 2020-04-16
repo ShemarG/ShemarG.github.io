@@ -279,11 +279,11 @@ const masterData = [
     ]
   }
 ]
-let correctAnswer = ""
 let score = 0
 let questionCount = 0
 let scoreSpan = document.getElementById('score')
 let home = document.getElementById('home')
+let nameDisplay = document.getElementById('nameDisplay')
 
 home.addEventListener('click', ()=>{
     document.location.href = '../html/index.html'
@@ -327,102 +327,8 @@ window.onload = function () {
       startTimer(fiveMinutes, display);
 };
 
-for (let i = 0; i < 5; i++) {
- let btn = document.getElementById(`btn_${i+1}`)
- btn.addEventListener('click', function(e){handleAns(e)})
+let render = () => {
+  let chosenCoral = masterData[randFunc(masterData)]
+  nameDisplay.textContent = chosenCoral.name
 }
-
-let continueBtn = document.getElementById('continue')
-continueBtn.addEventListener('click', () => {
-  scoreSpan.setAttribute("style", "color: default")
-  scoreSpan.textContent = ''
-  response.innerHTML = ''
-  btnList = document.querySelectorAll('.ans')
-  btnList.forEach((button) => {
-    button.classList.remove('correct', 'incorrect')
-    button.disabled = false
-  });
-
-  render()
-})
-
-let resetBtn = document.getElementById('reset')
-resetBtn.addEventListener('click', () => {
-  let crfm = confirm('Are you sure you want to restart?')
-  crfm == true ? location.reload():''
-})
-
-const render = () => {
-  continueBtn.disabled = true
-  scoreSpan.textContent = `Score: ${score}`
-  let answer = randFunc(masterData)
-  let coral = masterData[answer];
-  let imgDiv = document.getElementById('imgDiv')
-  imgDiv.innerHTML = `<img class='image' src='../images/${coral.code}/${Math.ceil(Math.random() * 4)}.jpg'/>`
-
-  let ansArr = [coral]
-  let dataCopy = masterData.slice()
-  dataCopy.splice(answer,1)
-  for (let i = 0; i < 4; i++) {
-    let choice = randFunc(dataCopy)
-    ansArr.push(dataCopy[choice])
-    dataCopy.splice(choice,1)
-  }
-  function shuffleArray(array) {
-	   for (let i = array.length - 1; i > 0; i--) {
-	      let j = Math.floor(Math.random() * (i + 1));
-	      let temp = array[i];
-	      array[i] = array[j];
-	      array[j] = temp;
-	   }
-     return array;
-	}
-  ansArr = shuffleArray(ansArr)
-
-  for (let i = 0; i < ansArr.length; i++) {
-    let btn = document.getElementById(`btn_${i+1}`)
-    btn.innerHTML = ansArr[i].name
-  }
-
-  correctAnswer = coral
-  questionCount++;
-}
-
 render()
-
-const handleAns = (evt) => {
-  let resp = document.getElementById('response')
-  let btnList = document.querySelectorAll('.ans')
-  btnList = ([].slice.call(btnList))
-  let correctButton = ""
-  btnList.forEach((element, index) => {
-    element.disabled = true
-    if (element.innerHTML == correctAnswer.name){
-      correctButton = element
-      btnList.splice(index,1)
-    }
-  })
-
-  if (evt.target.innerHTML == correctAnswer.name){
-    scoreSpan.textContent = `Score: ${score}+1`
-    score++
-    scoreSpan.setAttribute("style", "color: green")
-  } else {
-    scoreSpan.textContent = `Score: ${score}`
-    scoreSpan.setAttribute("style", "color: red")
-  }
-
-  let list = document.createElement('ul')
-  for (let i = 0; i < correctAnswer.notes.length; i++) {
-    let item = document.createElement('li')
-    item.innerHTML = correctAnswer.notes[i]
-    list.appendChild(item)
-  }
-  resp.innerHTML = list.innerHTML
-  btnList.disabled = true
-  btnList.forEach((element, index) => {
-    element.classList.add('incorrect')
-  })
-  correctButton.classList.add('correct')
-  continueBtn.disabled = false
-}
